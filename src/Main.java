@@ -8,18 +8,22 @@ public class Main {
         List.addLast(2);
         List.addLast(3);
         List.addLast(4);
+        List.addLast(5);
+        List.addLast(6);
+        List.addLast(7);
 
         System.out.println("Liste originale:");
         LinkedList.printList(List);
 
+        // Enlever 2 de la liste
         int valueToRemove = 2;
         List.removeValue(valueToRemove);
 
-        System.out.println("List après suppression de " + valueToRemove + ":");
-        LinkedList.printList(List); // renvoie 1,3,4
+        System.out.println("Liste après suppression de " + valueToRemove + ":");
+        LinkedList.printList(List); // Devrait renvoyer 1,3,4
 
         // Tester returnNLast
-        System.out.println("N-dernier élément: " + List.returnNLast(2)); // renvoie 3
-        System.out.println("N-dernier élément: " + List.returnNLast(3)); // renvoie 1
+        System.out.println("2e élément en partant de la fin: " + List.returnNLast(2)); // Devrait renvoyer 6
+        System.out.println("3e élément en partant de la fin: " + List.returnNLast(3)); // Devrait renvoyer 5
     }
 }
