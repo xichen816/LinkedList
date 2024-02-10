@@ -1,3 +1,6 @@
+/**
+ * Classe représentant une liste chaînée simple
+ */
 public class LinkedList {
     private Node head;
     private Node tail;
@@ -90,13 +93,48 @@ public class LinkedList {
         size--;
         return removedValue;
     }
-    public void removeValue(int value){
 
+    public void removeValue(int value) {
+        head = removeValueRecursive(head, value);
     }
 
-    public int returnNLast(int nLast){
 
-        return nLast;
+    private Node removeValueRecursive(Node node, int value) {
+        if (node == null) {
+            return null;
+        }
+        if (node.value == value) {
+            size--; // Réduire la longueur de la liste lorsqu'on trouve la valeur
+            return removeValueRecursive(node.next, value); // Ignorer ce nœud et continuer à parcourir
+        }
+
+        // Si la valeur du nœud actuel ne correspond pas à la valeur spécifiée,
+        // passer le nœud suivant en appel récursif
+        node.next = removeValueRecursive(node.next, value);
+        return node;
+    }
+
+
+    public int returnNLast(int nLast){
+        if (nLast <= 0 || nLast > size) {
+            throw new IllegalArgumentException("Valeur invalide");
+        }
+        Node slow = head;
+        Node fast = head;
+
+        // Déplacer le pointeur fast vers l'avant de nLast fois
+        for (int i = 0; i < nLast; i++) {
+            fast = fast.next;
+        }
+
+        // Déplacer slow et fast en même temps jusqu'à ce que fast atteigne la fin de la liste
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // slow pointe maintenant vers le n-ième élément en partant de la fin
+        return slow.value;
     }
 
     public boolean checkInList(int value){
@@ -115,5 +153,14 @@ public class LinkedList {
 
     public void addInOrder(int value){
 
+    }
+
+    public static void printList(LinkedList list) {
+        LinkedList.Node current = list.head;
+        while (current != null) {
+            System.out.print(current.value + " ");
+            current = current.next;
+        }
+        System.out.println();
     }
 }
