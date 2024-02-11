@@ -38,6 +38,10 @@ public class LinkedList {
         return tail.value;
     }
 
+    /**
+     * Ajoute un élément au début de la liste
+     * @param value l'élément ajouté
+     */
     public void addFirst(int value) {
         Node newNode = new Node(value);
         if (isEmpty()) {
@@ -50,6 +54,10 @@ public class LinkedList {
         size++;
     }
 
+    /**
+     * Ajoute un élément à la fin de la liste
+     * @param value l'élément ajouté
+     */
     public void addLast(int value) {
         Node newNode = new Node(value);
         if (isEmpty()) {
@@ -61,6 +69,10 @@ public class LinkedList {
         size++;
     }
 
+    /**
+     * Retire un élément au début de la liste
+     * @return l'élément retiré
+     */
     public int removeFirst() {
         if (isEmpty()) {
             throw new IllegalStateException("Liste vide");
@@ -74,6 +86,10 @@ public class LinkedList {
         return removedValue;
     }
 
+    /**
+     * Retire un élément à la fin de la liste
+     * @return l'élément retiré
+     */
     public int removeLast() {
         if (isEmpty()) {
             throw new IllegalStateException("Liste vide");
@@ -94,6 +110,10 @@ public class LinkedList {
         return removedValue;
     }
 
+    /**
+     * Retire tous les éléments avec une certaine valeur
+     * @param value la valeur à retirer
+     */
     public void removeValue(int value) {
         head = removeValueRecursive(head, value);
     }
@@ -114,7 +134,11 @@ public class LinkedList {
         return node;
     }
 
-
+    /**
+     * Renvoie le n-ième élément en partant de la fin en O(n)
+     * @param nLast la valeur de "n"
+     * @return le n-ième élément en partant de la fin
+     */
     public int returnNLast(int nLast){
         if (nLast <= 0 || nLast > size) {
             throw new IllegalArgumentException("Valeur invalide");
@@ -137,24 +161,44 @@ public class LinkedList {
         return slow.value;
     }
 
+    /**
+     * Vérifie si l'élément "value" est dans la liste
+     * @param value l'élément à vérifier
+     * @return vrai si l'élément est dans la liste, faux sinon
+     */
     public boolean checkInList(int value){
 
         return false;
     }
 
+    /**
+     * Renvoie la valeur maximale stockée dans la liste.
+     * @return la valeur maximale
+     */
     public int maxValue(){
 
         return 0;
     }
 
+    /**
+     * Trie la liste
+     */
     public void insertionSort(){
 
     }
 
+    /**
+     * Ajouter un élément dans une liste ordonnée
+     * @param value l'élément à ajouter
+     */
     public void addInOrder(int value){
 
     }
 
+    /**
+     * Imprime la liste chaînée simple actuelle
+     * @param list une liste chaînée simple
+     */
     public static void printList(LinkedList list) {
         LinkedList.Node current = list.head;
         while (current != null) {
