@@ -167,7 +167,15 @@ public class LinkedList {
      * @return vrai si l'élément est dans la liste, faux sinon
      */
     public boolean checkInList(int value){
+        Node first = head;
+        Node last = tail;
 
+        while (first != last.next) {
+            if (first.value == value) {
+                return true;
+            }
+            first = first.next;
+        }
         return false;
     }
 

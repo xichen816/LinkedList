@@ -25,5 +25,7 @@ public class Main {
         // Tester returnNLast
         System.out.println("2e élément en partant de la fin: " + List.returnNLast(2)); // Devrait renvoyer 6
         System.out.println("3e élément en partant de la fin: " + List.returnNLast(3)); // Devrait renvoyer 5
+
+        System.out.print(List.checkInList(0));
     }
 }
