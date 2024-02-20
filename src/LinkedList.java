@@ -183,10 +183,28 @@ public class LinkedList {
      * Renvoie la valeur maximale stockée dans la liste.
      * @return la valeur maximale
      */
-    public int maxValue(){
+    public int maxValue() {
+         Node first = head;
 
-        return 0;
+        return maxValueRecursive(first, first.value);
     }
+
+    private int maxValueRecursive(Node first, int max) {
+        Node last = tail;
+
+        if (first == null) {
+            return max;
+        }
+
+        if (first != last.next) {
+            if (max < first.value) {
+                max = first.value;
+            }
+        }
+        return maxValueRecursive(first.next, max);
+    }
+
+
 
     /**
      * Trie la liste
