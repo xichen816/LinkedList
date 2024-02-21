@@ -210,6 +210,43 @@ public class LinkedList {
      * Trie la liste
      */
     public void insertionSort(){
+        Node first = head;
+        Node second = head.next;
+
+        int compteur = 0;
+
+        Node pointeurP = head;
+        Node pointeurC = pointeurP.next;
+        Node pointeurN = pointeurC.next;
+
+        while (compteur != size()){
+            if (pointeurN == null){
+                pointeurP = head;
+                pointeurC = head.next;
+                pointeurN = pointeurC.next;
+            }
+
+            if (pointeurP.value > pointeurC.value){
+                int inter = pointeurP.value;
+                pointeurP.value = pointeurC.value;
+                pointeurC.value = inter;
+            }
+
+            if (pointeurC.value > pointeurN.value){
+                int inter = pointeurC.value;
+                pointeurC.value = pointeurN.value;
+                pointeurN.value = inter;
+            }
+
+            pointeurP = pointeurP.next;
+            pointeurC = pointeurC.next;
+            pointeurN = pointeurN.next;
+
+            
+            if (first.value < second.value) {
+                compteur = compteur + 1;
+            }
+        }
 
     }
 
