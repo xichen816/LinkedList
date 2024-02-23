@@ -204,50 +204,47 @@ public class LinkedList {
         return maxValueRecursive(first.next, max);
     }
 
-
-
     /**
      * Trie la liste
      */
-    public void insertionSort(){
-        Node first = head;
-        Node second = head.next;
+    public void insertionSort() {
 
-        int compteur = 0;
-
-        Node pointeurP = head;
-        Node pointeurC = pointeurP.next;
-        Node pointeurN = pointeurC.next;
-
-        while (compteur != size()){
-            if (pointeurN == null){
-                pointeurP = head;
-                pointeurC = head.next;
-                pointeurN = pointeurC.next;
-            }
-
-            if (pointeurP.value > pointeurC.value){
-                int inter = pointeurP.value;
-                pointeurP.value = pointeurC.value;
-                pointeurC.value = inter;
-            }
-
-            if (pointeurC.value > pointeurN.value){
-                int inter = pointeurC.value;
-                pointeurC.value = pointeurN.value;
-                pointeurN.value = inter;
-            }
-
-            pointeurP = pointeurP.next;
-            pointeurC = pointeurC.next;
-            pointeurN = pointeurN.next;
-
-            
-            if (first.value < second.value) {
-                compteur = compteur + 1;
-            }
+        // Condition qui vérifie si la liste contient seulement un élément(head)
+        if (head == null || head.next == null) {
+            return;
         }
 
+        Node sorted = null; // La liste triée est initialement vide
+
+        Node current = head; // Initialiser le nœud actuel à trier
+
+        // Itérer à travers la liste
+        while (current != null) {
+            Node nextNode = current.next;
+
+            // Si current value est inférieure ou égale au premier nœud de la liste triée,
+            // on l'insère à la tête de la liste
+            if (sorted == null || current.value <= sorted.value) {
+                current.next = sorted; // Update la référence du nœud trié
+                sorted = current; // Update son pointeur
+            } else {
+                // Trouver la position de current en itérant à travers le reste de la liste
+                Node temp = sorted; // Nœud de la liste triée
+                while (temp.next != null && temp.next.value < current.value) {
+                    temp = temp.next;
+                }
+                // Valeur supérieure à current trouvée.
+                // Ajuster les pointeurs pour situer current entre temp et temp.next
+                current.next = temp.next;
+                temp.next = current;
+            }
+
+            // Après insertion d'un nœud dans liste triée, passer le prochain nœud
+            current = nextNode;
+        }
+
+        // Après triage de la liste, update pointeur head
+        head = sorted;
     }
 
     /**
