@@ -252,7 +252,21 @@ public class LinkedList {
      * @param value l'élément à ajouter
      */
     public void addInOrder(int value){
+        head = addInOrderRecursive(head, value);
+    }
 
+    private Node addInOrderRecursive(Node node, int value){
+        Node current = head;
+
+        if (current == null || value <= current.value) {
+            Node newNode = new Node(value); // Créer nœud contenant la valeur
+            newNode.next = current; // L'insérer avant l'élément actuel
+            return newNode; // Renvoyer nouvel élément comme tête de liste
+        } else {
+            // Traitement récursif du nœud suivant
+            current.next = addInOrderRecursive(current.next, value);
+            return current;
+        }
     }
 
     /**
