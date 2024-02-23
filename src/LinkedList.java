@@ -167,7 +167,15 @@ public class LinkedList {
      * @return vrai si l'élément est dans la liste, faux sinon
      */
     public boolean checkInList(int value){
+        Node first = head;
+        Node last = tail;
 
+        while (first != last.next) {
+            if (first.value == value) {
+                return true;
+            }
+            first = first.next;
+        }
         return false;
     }
 
@@ -175,15 +183,70 @@ public class LinkedList {
      * Renvoie la valeur maximale stockée dans la liste.
      * @return la valeur maximale
      */
-    public int maxValue(){
+    public int maxValue() {
+         Node first = head;
 
-        return 0;
+        return maxValueRecursive(first, first.value);
     }
+
+    private int maxValueRecursive(Node first, int max) {
+        Node last = tail;
+
+        if (first == null) {
+            return max;
+        }
+
+        if (first != last.next) {
+            if (max < first.value) {
+                max = first.value;
+            }
+        }
+        return maxValueRecursive(first.next, max);
+    }
+
+
 
     /**
      * Trie la liste
      */
     public void insertionSort(){
+        Node first = head;
+        Node second = head.next;
+
+        int compteur = 0;
+
+        Node pointeurP = head;
+        Node pointeurC = pointeurP.next;
+        Node pointeurN = pointeurC.next;
+
+        while (compteur != size()){
+            if (pointeurN == null){
+                pointeurP = head;
+                pointeurC = head.next;
+                pointeurN = pointeurC.next;
+            }
+
+            if (pointeurP.value > pointeurC.value){
+                int inter = pointeurP.value;
+                pointeurP.value = pointeurC.value;
+                pointeurC.value = inter;
+            }
+
+            if (pointeurC.value > pointeurN.value){
+                int inter = pointeurC.value;
+                pointeurC.value = pointeurN.value;
+                pointeurN.value = inter;
+            }
+
+            pointeurP = pointeurP.next;
+            pointeurC = pointeurC.next;
+            pointeurN = pointeurN.next;
+
+            
+            if (first.value < second.value) {
+                compteur = compteur + 1;
+            }
+        }
 
     }
 
