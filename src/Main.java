@@ -47,6 +47,8 @@ public class Main {
         circularQueue.reverse();
         System.out.print("La file circulaire après avoir changé l'ordre : ");
         circularQueue.print();
+
+        System.out.print(circularQueue.checkInQueue(0));
     }
 
 }

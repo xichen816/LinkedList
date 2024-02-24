@@ -86,7 +86,11 @@ public class CircularQueue {
      * @return vrai si l'élément est dans la file, faux sinon
      */
     public boolean checkInQueue(int value){
-
+        for (int i = 0; i < size; i++){
+            if (queue[i] == value){;
+                return true;
+            }
+        }
         return false;
     }
 
