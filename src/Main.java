@@ -29,8 +29,24 @@ public class Main {
         System.out.println(List.checkInList(2));
         System.out.println(List.maxValue());
 
-        // System.out.println(List.size());
         List.insertionSort();
         LinkedList.printList(List);
+
+        CircularQueue circularQueue = new CircularQueue();
+        circularQueue.enqueue(1);
+        circularQueue.enqueue(2);
+        circularQueue.enqueue(3);
+        circularQueue.enqueue(4);
+        circularQueue.enqueue(5);
+        circularQueue.enqueue(6);
+        circularQueue.enqueue(7);
+
+        System.out.print("La file circulaire avant avoir changé l'ordre : ");
+        circularQueue.print();
+
+        circularQueue.reverse();
+        System.out.print("La file circulaire après avoir changé l'ordre : ");
+        circularQueue.print();
     }
+
 }
