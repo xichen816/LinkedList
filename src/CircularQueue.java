@@ -101,5 +101,16 @@ public class CircularQueue {
      */
     public void remove(int value){
 
+        // Vérifier si la file est vide
+        if (isEmpty()){
+            return;
+        }
+        // Vérifier si la valeur se trouve au début de la file
+        if (queue[front] == value){
+            dequeue();
+            return;
+        }
+        enqueue(dequeue()); // Déplacer le premier élément à la fin de la liste
+        remove(value); // Continuer la recherche
     }
 }
