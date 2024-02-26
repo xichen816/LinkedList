@@ -5,13 +5,11 @@ public class CircularQueue {
     private int size;
     private int front, rear;
     private int space = 100;
-    private int[] queue;
-    private int[] reversedQueue;
+    private final int[] queue;
 
 
     public CircularQueue(){
         this.queue = new int[space];
-        this.reversedQueue = new int[space];
     }
 
     public int size() {
@@ -60,9 +58,9 @@ public class CircularQueue {
 
     public void print(){
         System.out.print("[");
-       for (int i = 0; i < size; i++){
+       for (int i = 0; i < rear; i++){
            System.out.print(queue[i]);
-           if(i < size -1){
+           if(i < rear -1){
                System.out.print(", ");
            }
        }
@@ -74,15 +72,18 @@ public class CircularQueue {
      *  Inverse l'ordre de la file d'attente circulaire
      */
     public void reverse(){
-        for(int i = rear - 1; i > front - size ; i--){
-            reversedQueue[front++] = queue[i];
+        int[] temp = new int[size]; // Créer une liste temporaire
+        for (int i = 0; i < size; i++) {
+            temp[i] = dequeue(); // Renverser l'ordre de la file
         }
-        queue = reversedQueue;
+        for (int i = 0; i < size; i++) {
+            enqueue(temp[i]); // Enfiler dans la file originale
+        }
     }
 
     /**
      * Vérifie si l'élément est dans la file d'attente
-     * @param value
+     * @param value la valeur à vérifier
      * @return vrai si l'élément est dans la file, faux sinon
      */
     public boolean checkInQueue(int value){
@@ -100,5 +101,16 @@ public class CircularQueue {
      */
     public void remove(int value){
 
+        // Vérifier si la file est vide
+        if (isEmpty()){
+            return;
+        }
+        // Vérifier si la valeur se trouve au début de la file
+        if (queue[front] == value){
+            dequeue();
+            return;
+        }
+        enqueue(dequeue()); // Déplacer le premier élément à la fin de la liste
+        remove(value); // Continuer la recherche
     }
 }
