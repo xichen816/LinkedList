@@ -24,14 +24,14 @@ public class LinkedList {
         return size == 0;
     }
 
-    public int first() {
+    public int first() { // retourne le premier élément de la liste chainée
         if (isEmpty()) {
             throw new IllegalStateException("Liste vide");
         }
         return head.value;
     }
 
-    public int last() {
+    public int last() { // retourne le dernier élément de la liste chainée
         if (isEmpty()) {
             throw new IllegalStateException("Liste vide");
         }
@@ -186,7 +186,7 @@ public class LinkedList {
     public int maxValue() {
          Node first = head;
 
-        return maxValueRecursive(first, first.value);
+        return maxValueRecursive(first, first.value); // rappel la fonction
     }
 
     private int maxValueRecursive(Node first, int max) {
@@ -197,8 +197,8 @@ public class LinkedList {
         }
 
         if (first != last.next) {
-            if (max < first.value) {
-                max = first.value;
+            if (max < first.value) { // compare les éléments ensembles
+                max = first.value; // assigne le nouvel élément max
             }
         }
         return maxValueRecursive(first.next, max);

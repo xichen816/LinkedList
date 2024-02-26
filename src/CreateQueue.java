@@ -1,10 +1,10 @@
-public class CreateQueue {
+public class CreateQueue { // créer une file d'attente simple chainé
 
     private Node head;
     private Node tail;
     private int size;
 
-    private static class Node {
+    private static class Node { // permet de créer les noeux de la file d'attente
         int value;
         Node next;
 
@@ -14,7 +14,7 @@ public class CreateQueue {
         }
     }
 
-    public void enqueue(int value){
+    public void enqueue(int value){ // ajoute les éléments à la file d'attente
         Node newNode = new Node(value);
         if (isEmpty()) {
             head = newNode;
@@ -25,7 +25,7 @@ public class CreateQueue {
         size++;
     }
 
-    public int dequeue(){
+    public int dequeue(){ // enlève les éléments à la file d'attente
         if (isEmpty()) {
             throw new IllegalStateException("Liste vide");
         }
@@ -38,11 +38,11 @@ public class CreateQueue {
         return removedValue;
     }
 
-    public int size(){
+    public int size(){ // retourne la taille de la file d'attente
         return size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty(){ // regarde si la file d'attente est vide
         return size == 0;
     }
 }

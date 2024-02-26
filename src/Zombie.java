@@ -10,21 +10,21 @@ public class Zombie {
         File file = new File("src/sample.txt");
         Scanner scanner = new Scanner(file);
 
-        while (scanner.hasNextLine()){
+        while (scanner.hasNextLine()){ // Boucle tant que le fichier n'est pas été lu au complet
             String[] dimensions = scanner.nextLine().split(" ");
 
-            n = Integer.parseInt(dimensions[0]);
-            m = Integer.parseInt(dimensions[1]);
-            numbers = new int[n][m];
+            n = Integer.parseInt(dimensions[0]); // dimension de lignes
+            m = Integer.parseInt(dimensions[1]); // dimension de colognes
+            numbers = new int[n][m]; // taille de la matrice
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; i++) { // permet d'avoir toutes les valeurs de la matrice (tableau)
                 String[] number = scanner.nextLine().split(" ");
                 for (int j = 0; j < m; j++) {
-                    numbers[i][j] = Integer.parseInt(number[j]);
+                    numbers[i][j] = Integer.parseInt(number[j]); // ajoute les éléments
                 }
             }
 
-            findZombie(numbers);
+            findZombie(numbers); // appel la fonction findZombie
 
             System.out.println("----------------------------");
 
@@ -32,7 +32,7 @@ public class Zombie {
         scanner.close();
     }
 
-    public static void arrayToString(int[][] numbers){
+    public static void arrayToString(int[][] numbers){ // permet de lire et d'imprimer la matrice
         System.out.print("");
         for (int i = 0; i < numbers.length; i++) {
             System.out.print("[");
@@ -51,42 +51,42 @@ public class Zombie {
         System.out.println();
     }
 
-    public static void findZombie(int[][] numbers){
+    public static void findZombie(int[][] numbers){ // permet de transformer les humains en zombie
         CreateQueue queueLigne = new CreateQueue();
         CreateQueue queueColonne = new CreateQueue();
 
-        boolean looking = true;
-        int iteration = 0;
+        boolean looking = true; // permet de savoir s'il y a encore des humains à transformer
+        int iteration = 0; // compteur
 
         System.out.println("Itération : " + iteration);
         arrayToString(numbers);
 
-        while(looking){
-            looking = false;
+        while(looking){ // boucle qui roule tant qu'il y a encore des humains à transformer
+            looking = false; // arrete la boucle quand y'a plus d'humains
 
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = 0; j < numbers[i].length; j++) {
 
-                    if(numbers[i][j] == 1){
+                    if(numbers[i][j] == 1){ // trouve le 1 et recherche s'il y a un 2 aux alentours
 
-                        if(j > 0 && numbers[i][j-1] == 2){
-                            queueLigne.enqueue(i);
-                            queueColonne.enqueue(j);
+                        if(j > 0 && numbers[i][j-1] == 2){ // recherche à gauche
+                            queueLigne.enqueue(i); // ajoute la position en ligne
+                            queueColonne.enqueue(j); // ajoute la position en colonne
                             looking = true;
                         }
-                        else if(j < numbers[i].length-1 && numbers[i][j+1] == 2){
-                            queueLigne.enqueue(i);
-                            queueColonne.enqueue(j);
+                        else if(j < numbers[i].length-1 && numbers[i][j+1] == 2){ // recherche à droite
+                            queueLigne.enqueue(i); // ajoute la position en ligne
+                            queueColonne.enqueue(j); // ajoute la position en colonne
                             looking = true;
                         }
-                        else if(i > 0 && numbers[i-1][j] == 2){
-                            queueLigne.enqueue(i);
-                            queueColonne.enqueue(j);
+                        else if(i > 0 && numbers[i-1][j] == 2){ // recherche en haut
+                            queueLigne.enqueue(i); // ajoute la position en ligne
+                            queueColonne.enqueue(j); // ajoute la position en colonne
                             looking = true;
                         }
-                        else if(i < numbers.length-1 && numbers[i+1][j] == 2){
-                            queueLigne.enqueue(i);
-                            queueColonne.enqueue(j);
+                        else if(i < numbers.length-1 && numbers[i+1][j] == 2){ // recherche en bas
+                            queueLigne.enqueue(i); // ajoute la position en ligne
+                            queueColonne.enqueue(j); // ajoute la position en colonne
                             looking = true;
                         }
                     }
@@ -94,17 +94,17 @@ public class Zombie {
             }
 
             while(!queueColonne.isEmpty()){
-                numbers[queueLigne.dequeue()][queueColonne.dequeue()] = 2;
+                numbers[queueLigne.dequeue()][queueColonne.dequeue()] = 2; // change les 1 en 2
             }
 
-            iteration = iteration + 1;
+            iteration = iteration + 1; // compte les itérations
             System.out.println("Itération : " + iteration);
-            arrayToString(numbers);
+            arrayToString(numbers); // imprime la matrice
         }
 
-        for (int i = 0; i < numbers.length; i++) {
+        for (int i = 0; i < numbers.length; i++) { // vérifie s'il reste des humains
             for (int j = 0; j < numbers[i].length; j++) {
-                if(numbers[i][j] == 1){
+                if(numbers[i][j] == 1){ // s'il y a des 1, cela veut dire qu'il y a des humains
                     System.out.println("IL RESTE DES HUMAINS");
                 }
             }
