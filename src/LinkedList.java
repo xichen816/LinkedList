@@ -6,7 +6,7 @@ public class LinkedList {
     private Node tail;
     private int size;
 
-    private static class Node {
+    static class Node {
         int value;
         Node next;
 
